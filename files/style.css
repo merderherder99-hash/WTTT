@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --bg-color: #ffffff;
+    --primary-text: #000;
+    --secondary-text: #606060;
+    --border-color: #e0e0e0;
+    --gray-bg: #f8f9fa;
+    --usdt-green: #32a86d;
+    --usdt-red: #d9534f;
+    --link-blue: #0040ff;
+    --primary-blue: #3375BB;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* 🔹 Общий стиль */
+body {
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* 🔹 Контейнер */
+.container, .admin-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 4px 10px var(--shadow);
+}
+
+/* 🔹 Заголовок */
+h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-text);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Поля ввода */
+.form-group, label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background: var(--gray-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+}
+
+/* 🔹 Кнопки */
+button, .btn-generate, .btn-copy {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary-blue);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover, .btn-generate:hover, .btn-copy:hover {
+    background: #285f91;
+}
+
+/* 🔹 Сумма */
+.amount {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.usdt-amount {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.usdt-amount.positive {
+    color: var(--usdt-green);
+}
+
+.usdt-amount.negative {
+    color: var(--usdt-red);
+}
+
+/* 🔹 QR-код */
+.qr-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.qr-container canvas {
+    width: 160px;
+    height: 160px;
+    border-radius: 8px;
+}
+
+/* 🔹 Детали (серый фон) */
+.details {
+    background: var(--gray-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.details p {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+}
+
+.details span {
+    color: var(--secondary-text);
+}
+
+/* 🔹 Ссылка на блокчейн */
+.blockchain-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.blockchain-link a {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--link-blue);
+    text-decoration: none;
+}
+
+.blockchain-link a:hover {
+    text-decoration: underline;
+}
+
+.blockchain-link {
+
+    margin-bottom: 10px; 
+}
+/*Кнопка*/
+.receive-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #32a86d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.receive-button:hover {
+    background-color: #2e9461;
+}

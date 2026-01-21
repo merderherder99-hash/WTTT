@@ -1,0 +1,74 @@
+document.addEventListener("DOMContentLoaded", function () {
+    if (document.getElementById("generatedLink")) {
+        setupAdminPanel();
+    } else if (document.getElementById("amount")) {
+        setupTransactionPage();
+    }
+});
+
+/* 🔹 АДМИН-ПАНЕЛЬ: Генерация ссылок */
+function setupAdminPanel() {
+    document.querySelector("button").addEventListener("click", generateLink);
+}
+
+function generateLink() {
+    let type = document.getElementById("type").value;
+    let amount = parseFloat(document.getElementById("amount").value).toFixed(2);
+
+    if (!amount || amount <= 0) {
+        alert("Please enter a valid amount");
+        return;
+    }
+
+    let now = new Date();
+    let date = now.toISOString().split("T")[0] + " " + now.toTimeString().split(" ")[0].slice(0, 5);
+
+    let qrData = "wc";
+
+    let link = `${window.location.origin}/${type}.html?amount=${amount}&date=${encodeURIComponent(date)}&qrData=${encodeURIComponent(qrData)}`;
+
+    document.getElementById("generatedLink").value = link;
+}
+
+/* 🔹 Копирование ссылки */
+function copyLink() {
+    let link = document.getElementById("generatedLink");
+    link.select();
+    document.execCommand("copy");
+    alert("Link copied!");
+}
+
+/* 🔹 ПАРСИНГ ДАННЫХ В `receive.html` и `invoice.html` */
+function setupTransactionPage() {
+    const params = new URLSearchParams(window.location.search);
+
+    let amount = parseFloat(params.get("amount") || "0.00").toFixed(2);
+    let date = params.get("date") || "Unknown";
+    let qrData = params.get("qrData") || "N/A";
+    let isInvoice = window.location.pathname.includes("invoice");
+
+    let status = "Pending...";
+    let wallet = "TXyd58k...TKNT5aU";
+
+    let amountText = `${isInvoice ? "-" : "+"}${amount} USDT`;
+    document.getElementById("amount").textContent = amountText;
+    document.getElementById("usd-value").textContent = amount;
+    document.getElementById("date").textContent = date;
+    document.getElementById("wallet").textContent = wallet;
+    document.getElementById("status").textContent = status;
+
+    generateQRCode(qrData);
+    document.getElementById("blockchainExplorer");
+}
+
+/* 🔹 ГЕНЕРАЦИЯ QR-КОДА */
+function generateQRCode(data) {
+    let qrContainer = document.getElementById("qr-code");
+    qrContainer.innerHTML = "";
+
+    new QRCode(qrContainer, {
+        text: data,
+        width: 160,
+        height: 160
+    });
+}
